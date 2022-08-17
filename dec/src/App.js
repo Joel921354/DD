@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import Axios from "axios";
+import phoneGeneric from "./img/phone-generic.png";
 
 function App() {
 
@@ -35,17 +36,18 @@ const getPhones = () => {
   });
 };
 
+getPhones();
   return (
     
     <div className="App" >
-              <button onClick={getPhones}>Show Phones</button>
+             
 
        {phoneList.map((val, key) => {
           return (
-            <div className="employee">
-              hello world
+            <div className="phonesBox">
               <div>
-                <h3>phone: {val.phoneName}</h3>
+                <img className="phoneImg" src={phoneGeneric}></img>
+                <h3 key={val.key}>phone: {val.phoneName}</h3>
                 <h3>query: {val.query}</h3>
           
               </div>
