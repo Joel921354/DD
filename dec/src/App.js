@@ -4,7 +4,6 @@ import Axios from "axios";
 import Pcard from "./components/PhoneCard";
 import Topbar from './common/navbar';
 import Stack from 'react-bootstrap/Stack';
-import Pmodal from './Pmodal';
 
 
 
