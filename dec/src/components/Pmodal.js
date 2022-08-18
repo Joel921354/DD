@@ -4,9 +4,6 @@ import Modal from 'react-bootstrap/Modal';
 
 function Pmodal({show, setShow, handleClose, id, title}) {
   
-  const cancelButtonRef = useRef(null);
-  
-  
   return (
 <>
     

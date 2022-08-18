@@ -16,11 +16,11 @@ function CrudBtn(props) {
   return (
     <ButtonGroup aria-label="Basic example">
 
-      <Button variant="primary" onClick={handleShow}>Edit Query </Button>
+      <Button variant="outline-primary" size="sm" onClick={handleShow}>Edit Query </Button>
         <Pmodal show={show} setShow={() => setShow(Boolean)} handleClose={() => handleClose(Boolean)} id={props.id} title={props.title} />
       {/* //open model with id */} 
-      <Button variant="danger">Delete item</Button>
-      <Button variant="info">statistics</Button>
+      <Button variant="outline-danger" size="sm" >Delete item</Button>
+      <Button variant="outline-info" size="sm">statistics</Button>
 
     </ButtonGroup>
     
