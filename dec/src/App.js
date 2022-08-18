@@ -1,7 +1,10 @@
-import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import Axios from "axios";
-import phoneGeneric from "./img/phone-generic.png";
+import Pcard from "./components/PhoneCard";
+import Topbar from './common/navbar';
+import Stack from 'react-bootstrap/Stack';
+
 
 function App() {
 
@@ -36,48 +39,28 @@ const getPhones = () => {
   });
 };
 
-getPhones();
-  return (
-    
-    <div className="App" >
-             
+try {
+    getPhones();
+} catch (error) {
+    console.log(error);
+}
 
+  return (
+   
+    <div className="App" >
+{/* begin mapping */}
+<Topbar/>
+  <Stack direction="horizontal" gap={4}>
        {phoneList.map((val, key) => {
           return (
             <div className="phonesBox">
-              <div>
-                <img className="phoneImg" src={phoneGeneric}></img>
-                <h3 key={val.key}>phone: {val.phoneName}</h3>
-                <h3>query: {val.query}</h3>
-          
-              </div>
-              <div>
-            {/*     <input
-                  type="text"
-                  placeholder="2000..."
-                  onChange={(event) => {
-                    setNewWage(event.target.value);
-                  }}
-                />
-                <button
-                  onClick={() => {
-                    updateEmployeeWage(val.id);
-                  }}
-                >
-                  {" "}
-                  Update
-                </button>
- 
-                <button
-                  onClick={() => {
-                    deletePhones(val.id);
-                  }}
-                >
-                  Delete
-                </button> */}
-              </div>
+               <Pcard title={val.phoneName} q={val.query}/> 
             </div>
-          );})} </div>
+          );})} 
+  </Stack>
+    
+    
+    </div>
   ); 
 }
 
