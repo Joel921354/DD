@@ -12,12 +12,13 @@ function CrudBtn(props) {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
+
   return (
     <ButtonGroup aria-label="Basic example">
 
-      <Button variant="primary" onClick={handleShow}>Edit Query</Button>
-        <Pmodal show={show} setShow={() => setShow(Boolean)} handleClose={() => handleClose(Boolean)} />
-      {/* //open model with id */}
+      <Button variant="primary" onClick={handleShow}>Edit Query </Button>
+        <Pmodal show={show} setShow={() => setShow(Boolean)} handleClose={() => handleClose(Boolean)} id={props.id} title={props.title} />
+      {/* //open model with id */} 
       <Button variant="danger">Delete item</Button>
       <Button variant="info">statistics</Button>
 

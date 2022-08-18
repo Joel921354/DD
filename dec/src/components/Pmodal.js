@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function Pmodal({show, setShow, handleClose}) {
+function Pmodal({show, setShow, handleClose, id, title}) {
   
   const cancelButtonRef = useRef(null);
   
@@ -18,11 +18,11 @@ function Pmodal({show, setShow, handleClose}) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>editing platform ID - {id} - {title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           I will not close if you click outside me. Don't even try to press
-          escape key.
+          escape key. {id}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => handleClose(false)}>

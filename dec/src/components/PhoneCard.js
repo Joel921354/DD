@@ -17,7 +17,7 @@ function Pcard(props) {
           <Paccord q={props.q}/>
         </Card.Text>
         
-          <CrudBtn/>
+          <CrudBtn key={props.id} id={props.id} title={props.title}/>
         </Card.Body>
     </Card>
   );
