@@ -5,6 +5,11 @@ import Badge from 'react-bootstrap/Badge';
 import Pcard from "./components/PhoneCard";
 import Topbar from './common/navbar';
 import Stack from 'react-bootstrap/Stack';
+import NewCard from './components/newcard';
+import Container from 'react-bootstrap/esm/Container';
+import DataTable from './components/dataTable';
+import AdditionalContent from './components/additionalContent';
+import { Button } from 'bootstrap';
 
 
 
@@ -60,7 +65,12 @@ return (
     <div className="App" >
 {/* begin mapping */}
 <Topbar/>
-  <Stack direction="horizontal" gap={4}>
+  <Stack direction="horizontal" className="d-flex align-items-center justify-content-center  not-found-container" gap={4}>
+  <div>
+  <Badge bg="info">Add new item ➕</Badge> 
+    <NewCard > </NewCard>
+    
+    </div>
        {phoneList.map((val, key) => {
           return (
             <div className="phonesBox" key={val.id}>
@@ -70,8 +80,12 @@ return (
             </div>
           );})} 
   </Stack>
-    
-    
+  {/* begin mapping */}
+            <hr/>
+    <Container>
+      
+     
+    </Container>
     </div>
   ); 
 }// end rendering

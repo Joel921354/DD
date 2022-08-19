@@ -1,7 +1,11 @@
 import Table from 'react-bootstrap/Table';
+import AdditionalContent from './additionalContent';
 
 function DataTable() {
   return (
+    
+    <div>
+    <AdditionalContent title="Results of" text="something" subtext="something else" id="1"></AdditionalContent>
       <Table striped bordered hover>
       <thead>
         <tr>
@@ -31,6 +35,7 @@ function DataTable() {
         </tr>
       </tbody>
     </Table>
+    </div>
   );
 }
 
