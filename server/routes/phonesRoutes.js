@@ -27,5 +27,10 @@ router.put('/delete', phonesRoutes.phonesDelete)
 // this means that '/reset' translates to '/phones/reset'
 router.put('/reset', phonesRoutes.phonesReset)
 
+// Add route for PUT request to reset phoneshelf list
+// In server.js, phones route is specified as '/phones'
+// this means that '/fields' translates to '/phones/fields'
+router.get('/fields', phonesRoutes.fieldTest)
+
 // Export router
 module.exports = router

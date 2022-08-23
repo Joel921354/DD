@@ -22,24 +22,24 @@ const fields = [
   function Query() {
     const [query, setQuery] = useState({
         combinator: 'and',
-        rules: [
-          { field: 'firstName', operator: '=', value: 'Steve' },
-          { field: 'lastName', operator: '=', value: 'Vai' },
-        ],
+        rules: [],
       });
       return (
         <div>
+         
+          
+          <div>
+          <h4>Query</h4>
+            <code>{formatQuery(query, 'sql')}</code>
+          </div>
           <QueryBuilder
             fields={fields}
             query={query}
             onQueryChange={q => setQuery(q)}
             controlElements={bootstrapControlElements}
             controlClassnames={bootstrapControlClassnames}
+            showCombinatorsBetweenRules={true}
           />
-          <h4>Query</h4>
-          <pre>
-            <code>{formatQuery(query, 'sql')}</code>
-          </pre>
         </div>
       );
   }

@@ -17,6 +17,20 @@ exports.phonesAll = async (req, res) => {
     })
 }
 
+// retreive column info
+exports.fieldTest = async (req, res) => {
+  // Get all phones from database
+  knex('fieldTest').select('*') // select all records
+  .from('fieldTest').then(info => {
+      // Send phones extracted from database in response
+      res.json(info)
+    })
+    .catch(err => {
+      // Send a error message in response
+      res.json({ message: `There was an error retrieving columns: ${err}` })
+    })
+}
+
 // Create new phone
 exports.phonesCreate = async (req, res) => {
   // Add new phone to database

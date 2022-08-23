@@ -14,7 +14,7 @@ const knex = require('knex')({
 })
 
 knex.schema
-  // Make sure no "books" table exists
+  // Make sure no "phones or fields" table exists
   // before trying to create new
   .hasTable('phones')
     .then((exists) => {
@@ -49,6 +49,10 @@ knex.schema
 // Just for debugging purposes:
 // Log all data in "books" table
 knex.select('*').from('phones')
+  .then(data => console.log('data:', data))
+  .catch(err => console.log(err))
+
+  knex.select('*').from('fieldTest')
   .then(data => console.log('data:', data))
   .catch(err => console.log(err))
 

@@ -7,9 +7,7 @@ import Topbar from './common/navbar';
 import Stack from 'react-bootstrap/Stack';
 import NewCard from './components/newcard';
 import Container from 'react-bootstrap/esm/Container';
-import DataTable from './components/dataTable';
-import AdditionalContent from './components/additionalContent';
-import { Button } from 'bootstrap';
+
 
 
 
@@ -22,6 +20,7 @@ function App() {
   //get list of phones in an array
   const [phoneList, setPhoneList] = useState([]);
 
+
   // enter and create a new phone
   const addPhone = () => {
     Axios.post("http://localhost:4001/phones/create", {
@@ -29,6 +28,7 @@ function App() {
       
     }).then(() => {
       setPhoneList([
+        //spread across phonelist
         ...phoneList,
         {
           id: id,
@@ -46,6 +46,7 @@ function App() {
     setPhoneList(response.data);
   });
   };
+//get column fields and add it to the local field list for querybuilder
 
 // application functionality
 
@@ -68,6 +69,7 @@ return (
   <Stack direction="horizontal" className="d-flex align-items-center justify-content-center  not-found-container" gap={4}>
   <div>
   <Badge bg="info">Add new item ➕</Badge> 
+  
     <NewCard > </NewCard>
     
     </div>
