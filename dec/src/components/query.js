@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -22,13 +22,24 @@ import {
 
   function Query(props) {
 
-    const test = parseSQL(`SELECT * FROM t WHERE firstName = 'Steve' AND lastName = 'Vai'`);
+    const test = parseSQL(`SELECT * FROM t WHERE firstName = 'turtle' AND lastName = 'Vai'`);
     const [query, setQuery] = useState({
-        combinator: 'and',
+        combinator: '',
         rules: [],
       });
 
-  
+    useEffect(() => {
+        // Run! Like go get some data from an API. 
+        //passing an array as a second empty argument stops it from running more than once
+        setQuery({...query, 
+          combinator:test.combinator, 
+          rules: test.rules, 
+        },)
+      }, []);
+     
+      
+     console.log(test.combinator)
+     console.log(test.rules)
       return (
         <div>
          
