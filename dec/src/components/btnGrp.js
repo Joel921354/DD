@@ -7,17 +7,26 @@ import { useState } from 'react';
 
 
 
-function CrudBtn(props) {
-
+function CrudBtn(props, {fields}) {
+// parent model to the buttons
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
+    // handle the fields TODO
+    /*  fields = [{ name: 'firstName', label: 'First Name' },
+    { name: 'lastName', label: 'Last Name' },
+    { name: 'age', label: 'Age' },
+    { name: 'address', label: 'Address' },
+    { name: 'phone', label: 'Phone' },
+    { name: 'email', label: 'Email' },
+    { name: 'twitter', label: 'Twitter' },
+    ] */
 
   return (
     <ButtonGroup aria-label="Basic example">
 
       <Button variant="outline-primary" size="sm" onClick={handleShow}>Edit Query </Button>
-        <Pmodal show={show} setShow={() => setShow(Boolean)} handleClose={() => handleClose(Boolean)} id={props.id} title={props.title} />
+        <Pmodal show={show} fields={fields} setShow={() => setShow(Boolean)} handleClose={() => handleClose(Boolean)} id={props.id} title={props.title} />
       {/* //open model with id */} 
       <Button variant="outline-danger" size="sm" >Delete item</Button>
       <Button variant="outline-info" size="sm">statistics</Button>

@@ -20,11 +20,11 @@ function Topbar() {
           <Form className="d-flex">
             <Form.Control
               type="search"
-              placeholder="Search"
+              placeholder="coming soon..."
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-inactive">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

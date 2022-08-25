@@ -5,10 +5,11 @@ import {
     bootstrapControlClassnames,
     bootstrapControlElements,
   } from '@react-querybuilder/bootstrap';
-  import { formatQuery, QueryBuilder } from 'react-querybuilder';
+  import { formatQuery, QueryBuilder , parseSQL} from 'react-querybuilder';
 
+/* TODO fix list so that it's dynmaic */
 
-const fields = [
+/* const fields = [
     { name: 'firstName', label: 'First Name' },
     { name: 'lastName', label: 'Last Name' },
     { name: 'age', label: 'Age' },
@@ -17,13 +18,17 @@ const fields = [
     { name: 'email', label: 'Email' },
     { name: 'twitter', label: 'Twitter' },
     { name: 'isDev', label: 'Is a Developer?', value: false }
-  ];
+  ]; */
 
-  function Query() {
+  function Query(props) {
+
+    const test = parseSQL(`SELECT * FROM t WHERE firstName = 'Steve' AND lastName = 'Vai'`);
     const [query, setQuery] = useState({
         combinator: 'and',
         rules: [],
       });
+
+  
       return (
         <div>
          
@@ -32,8 +37,10 @@ const fields = [
           <h4>Query</h4>
             <code>{formatQuery(query, 'sql')}</code>
           </div>
+         
+
           <QueryBuilder
-            fields={fields}
+            fields={props.fields}
             query={query}
             onQueryChange={q => setQuery(q)}
             controlElements={bootstrapControlElements}

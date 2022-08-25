@@ -1,16 +1,15 @@
 import React, { useRef, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/esm/Badge';
-import Modal from 'react-bootstrap/Modal';
+import {Button, Badge, Modal} from 'react-bootstrap/';
+
 import QueryBuilder from 'react-querybuilder';
-import {
-  bootstrapControlClassnames,
-  bootstrapControlElements,
-} from '@react-querybuilder/bootstrap';
+import {bootstrapControlClassnames,bootstrapControlElements,} from '@react-querybuilder/bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-function Pmodal({show, setShow, handleClose, id, title}) {
+
+
+
+function Pmodal({show, setShow, handleClose, id, title, fields, query}) {
   
-  const fields = [
+  /* const fields = [
     { name: 'firstName', label: 'First Name' },
     { name: 'lastName', label: 'Last Name' },
     { name: 'age', label: 'Age' },
@@ -19,7 +18,7 @@ function Pmodal({show, setShow, handleClose, id, title}) {
     { name: 'email', label: 'Email' },
     { name: 'twitter', label: 'Twitter' },
     { name: 'isDev', label: 'Is a Developer?', value: false }
-  ];
+  ]; */
   return (
 <>
     
@@ -39,7 +38,7 @@ function Pmodal({show, setShow, handleClose, id, title}) {
         <Modal.Body>
           Edit Query <Badge bg="warning"><b>{id}</b></Badge> 
            {/* */}
-          <QueryBuilder fields={fields}  controlElements={bootstrapControlElements}
+          <QueryBuilder fields={fields} xquery={query} controlElements={bootstrapControlElements}
             controlClassnames={bootstrapControlClassnames}
             />
           {/* */}
