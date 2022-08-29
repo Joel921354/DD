@@ -1,13 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Button, Badge, Modal} from 'react-bootstrap/';
-
-import QueryBuilder from 'react-querybuilder';
 import {bootstrapControlClassnames,bootstrapControlElements,} from '@react-querybuilder/bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { QueryBuilder, parseSQL } from 'react-querybuilder';
+import ErrorBoundary from '../common/error';
 
 
 
-function Pmodal({show, setShow, handleClose, id, title, fields, query}) {
+function Pmodal({show, setShow, handleClose, id, title, fields, query, xq}) {
   
   /* const fields = [
     { name: 'firstName', label: 'First Name' },
@@ -19,6 +19,29 @@ function Pmodal({show, setShow, handleClose, id, title, fields, query}) {
     { name: 'twitter', label: 'Twitter' },
     { name: 'isDev', label: 'Is a Developer?', value: false }
   ]; */
+
+  const [xquery, setxQuery] = useState({
+    combinator: '',
+    rules: [],
+  });
+  const inputQuery = parseSQL(xq);
+  
+  useEffect(() => {
+    //debug
+   
+      // Run! Like go get some data from an API. 
+      //passing an array as a second empty argument stops it from running more than once
+      try {
+        setxQuery({...query, 
+          combinator: inputQuery.combinator, 
+          rules: inputQuery.rules, 
+        },)
+      } catch (error) {
+        console.log(error)
+      }
+      
+    }, []);
+   
   return (
 <>
     
@@ -34,13 +57,19 @@ function Pmodal({show, setShow, handleClose, id, title, fields, query}) {
           <Modal.Title>
             Editing platform ID - <Badge bg="warning"><b>{id}</b></Badge> 
             &nbsp; Platform Name - <Badge bg="info"><code>{title}</code></Badge>  </Modal.Title>
-        </Modal.Header>
+          </Modal.Header>
         <Modal.Body>
           Edit Query <Badge bg="warning"><b>{id}</b></Badge> 
            {/* */}
-          <QueryBuilder fields={fields} xquery={query} controlElements={bootstrapControlElements}
-            controlClassnames={bootstrapControlClassnames}
+           <ErrorBoundary>
+          <QueryBuilder 
+          fields={fields} 
+          query={xquery} 
+          controlElements={bootstrapControlElements}
+          controlClassnames={bootstrapControlClassnames}
             />
+            </ErrorBoundary>
+            
           {/* */}
         </Modal.Body>
         <Modal.Footer>

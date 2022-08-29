@@ -22,24 +22,26 @@ import {
 
   function Query(props) {
 
-    const test = parseSQL(`SELECT * FROM t WHERE firstName = 'turtle' AND lastName = 'Vai'`);
+    const inputQuery = parseSQL(`SELECT * FROM t WHERE firstName = 'turtle' AND lastName = 'Vai'`);
     const [query, setQuery] = useState({
         combinator: '',
         rules: [],
       });
 
     useEffect(() => {
+      //debug
+      console.log(inputQuery.combinator)
+      console.log(inputQuery.rules)
         // Run! Like go get some data from an API. 
         //passing an array as a second empty argument stops it from running more than once
         setQuery({...query, 
-          combinator:test.combinator, 
-          rules: test.rules, 
+          combinator: inputQuery.combinator, 
+          rules: inputQuery.rules, 
         },)
       }, []);
      
       
-     console.log(test.combinator)
-     console.log(test.rules)
+     
       return (
         <div>
          

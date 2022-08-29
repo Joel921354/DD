@@ -42,10 +42,7 @@ function NewCard(props) {
     
     <Form.Group className="mb-3" controlId="platform title">
         <Form.Label>Platform Name</Form.Label>
-        <Form.Control type="text" placeholder="Enter Platform Name"  
-          onChange={(event) => {
-            setPhoneName(event.target.value);
-          }}/>
+        <Form.Control type="text" placeholder="Enter Platform Name"/>
         <Form.Text className="text-muted">
           the ID of the platform is generated automatically
           <br/>

@@ -20,7 +20,7 @@ router.post('/create', phonesRoutes.phonesCreate)
 // Add route for PUT request to delete specific phone
 // In server.js, phones route is specified as '/phones'
 // this means that '/delete' translates to '/phones/delete'
-router.put('/delete', phonesRoutes.phonesDelete)
+router.get('/delete/:id', phonesRoutes.phonesDelete)
 
 // Add route for PUT request to reset phoneshelf list
 // In server.js, phones route is specified as '/phones'

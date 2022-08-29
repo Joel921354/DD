@@ -54,15 +54,15 @@ exports.phonesCreate = async (req, res) => {
 exports.phonesDelete = async (req, res) => {
   // Find specific phone in the database and remove it
   knex('phones')
-    .where('id', req.body.id) // find correct record based on id
+    .where('id', req.params.id) // find correct record based on id
     .del() // delete the record
     .then(() => {
       // Send a success message in response
-      res.json({ message: `phone ${req.body.id} deleted.` })
+      res.json({ message: `phone ${req.params.id} deleted.` })
     })
     .catch(err => {
       // Send a error message in response
-      res.json({ message: `There was an error deleting ${req.body.id} phone: ${err}` })
+      res.json({ message: `There was an error deleting ${req.params.id} phone: ${err}` })
     })
 }
 
