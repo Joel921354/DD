@@ -16,22 +16,29 @@ function App() {
   //form contents
   const [phoneName, setPhoneName] = useState("");
   const [query, setQuery] = useState("");
-  const [id, setId] = useState(0);
+  //const [id, setId] = useState(0);
   //get list of phones in an array
   const [phoneList, setPhoneList] = useState([]);
   // delete the phone
 
+  //fields TODO
+  const fields = [{ name: 'APN', label: 'APN' },
+  { name: 'MCC', label: 'MCC' },
+  { name: 'age', label: 'Age' },
+  { name: 'deviceType', label: 'Device Type' }]
+  
   // enter and create a new phone
   const addPhone = () => {
     Axios.post("http://localhost:4001/phones/create", {
-      
+      phoneName: phoneName,
+      query: query
       
     }).then(() => {
       setPhoneList([
         //spread across phonelist
         ...phoneList,
         {
-          id: id,
+          
           phoneName: phoneName,
           query: query,
         },
@@ -80,7 +87,7 @@ return (
   <div>
   <Badge bg="info">Add new item ➕</Badge> 
   
-    <NewCard handler={addPhone} > </NewCard>
+    <NewCard addPhone={addPhone} setQuery={setQuery} setPhoneName={setPhoneName} fields={fields} > </NewCard>
     
     </div>
        {phoneList.map((val, key) => {

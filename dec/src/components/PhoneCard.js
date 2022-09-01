@@ -3,6 +3,7 @@ import CrudBtn from './btnGrp';
 import genericPhone from '../img/phone-generic.png';
 import Paccord from './accordion';
 
+//child of stack
 function PhoneCard(props) {
   return (
     <Card style={{ width: '18rem' }}>
@@ -14,7 +15,7 @@ function PhoneCard(props) {
         </Card.Title>
         
         <Card.Text>
-          <Paccord q={props.q} title="🔍 Query "/>
+          <Paccord q={props.q} title="🔍 Definition "/>
         </Card.Text>
         
           <CrudBtn key={props.id} id={props.id} title={props.title} q={props.q} handler={props.handler}/>

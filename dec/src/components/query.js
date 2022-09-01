@@ -1,61 +1,37 @@
 import { useState, useEffect } from 'react';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-    bootstrapControlClassnames,
-    bootstrapControlElements,
-  } from '@react-querybuilder/bootstrap';
-  import { formatQuery, QueryBuilder , parseSQL} from 'react-querybuilder';
+import {bootstrapControlClassnames, bootstrapControlElements,} from '@react-querybuilder/bootstrap';
+import { formatQuery, QueryBuilder , parseSQL} from 'react-querybuilder';
 
 /* TODO fix list so that it's dynmaic */
 
-/* const fields = [
-    { name: 'firstName', label: 'First Name' },
-    { name: 'lastName', label: 'Last Name' },
-    { name: 'age', label: 'Age' },
-    { name: 'address', label: 'Address' },
-    { name: 'phone', label: 'Phone' },
-    { name: 'email', label: 'Email' },
-    { name: 'twitter', label: 'Twitter' },
-    { name: 'isDev', label: 'Is a Developer?', value: false }
-  ]; */
-
   function Query(props) {
-
-    const inputQuery = parseSQL(`SELECT * FROM t WHERE firstName = 'turtle' AND lastName = 'Vai'`);
-    const [query, setQuery] = useState({
-        combinator: '',
-        rules: [],
-      });
-
+//TODO error handling
+    const inputQuery = parseSQL(`SELECT * FROM t WHERE APN = 'name here'`);
+    
+ //run once     
     useEffect(() => {
-      //debug
-      console.log(inputQuery.combinator)
-      console.log(inputQuery.rules)
-        // Run! Like go get some data from an API. 
-        //passing an array as a second empty argument stops it from running more than once
-        setQuery({...query, 
+      //passing an array as a second empty argument stops it from running more than once
+        
+        props.setQuery({...props.query, 
           combinator: inputQuery.combinator, 
           rules: inputQuery.rules, 
         },)
       }, []);
-     
-      
-     
+//run once end
+
       return (
         <div>
-         
-          
           <div>
           <h4>Query</h4>
-            <code>{formatQuery(query, 'sql')}</code>
+            <code>{formatQuery(props.query, 'sql')}</code>
           </div>
          
 
           <QueryBuilder
             fields={props.fields}
-            query={query}
-            onQueryChange={q => setQuery(q)}
+            query={props.query}
+            onQueryChange={q => props.setQuery(q)}
             controlElements={bootstrapControlElements}
             controlClassnames={bootstrapControlClassnames}
             showCombinatorsBetweenRules={true}

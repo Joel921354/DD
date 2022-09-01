@@ -1,27 +1,27 @@
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import {Card, Form, Button, Accordion} from 'react-bootstrap/';
 import Query from './query';
 import Paccord from './accordion';
-import Form from 'react-bootstrap/Form';
-import Accordion from 'react-bootstrap/Accordion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function NewCard(props) {
 // data to extract from the form
-  const [phoneName, setPhoneName] = useState('')
-  const [definition, setDefinition] = useState('')
-  // to adjust the form
 
-  const [formData, setFormData] = useState([])
-  
-  const fields = [{ name: 'firstName', label: 'First Name' },
-  { name: 'lastName', label: 'Last Name' },
-  { name: 'age', label: 'Age' },
-  { name: 'address', label: 'Address' },
-  { name: 'phone', label: 'Phone' },
-  { name: 'email', label: 'Email' },
-  { name: 'twitter', label: 'Twitter' },
-  { name: 'isDev', label: 'Is a Developer?', value: false }]
+const addPhone = () => props.addPhone();
+// set the values
+const phoneNameHandler = (event) => {
+  props.setPhoneName(event.target.value);
+};
+//set local query object to contain something
+const queryStringHandler = () => {
+  props.setQuery(query);
+};
+  // to adjust the form
+//add the query for display and for submission
+const [query, setQuery] = useState({
+  combinator: '',
+  rules: [],
+ });
+    
  return (
     <Accordion defaultActiveKey="0">
     <Accordion.Item eventKey="1">
@@ -42,23 +42,26 @@ function NewCard(props) {
     
     <Form.Group className="mb-3" controlId="platform title">
         <Form.Label>Platform Name</Form.Label>
-        <Form.Control type="text" placeholder="Enter Platform Name"/>
+        <Form.Control type="text" onChange={phoneNameHandler}  placeholder="Enter Platform Name"/>
         <Form.Text className="text-muted">
           the ID of the platform is generated automatically
           <br/>
         </Form.Text>
         <Form.Label>Platform definition</Form.Label>
-        <Query fields={fields} />
-    </Form.Group>
+          <Query fields={props.fields} query={query} setQuery={setQuery} onChange={queryStringHandler} />
     
-          
+          <Button variant="outline-success" 
+         
+          onClick={() => addPhone()} > Add a new platform </Button>
+  
+        </Form.Group>
     
         </Card.Text>
         
-          <Button variant="outline-success" onClick={setFormData} > Add a new platform </Button>
+        
         </Card.Body>
-    
     </Card>
+    
     </Form>
     </Accordion.Body>
       </Accordion.Item>
