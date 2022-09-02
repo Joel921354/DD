@@ -2,8 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import Badge from 'react-bootstrap/Badge';
-import  Phonecard from './components/PhoneCard';
-import  NewCard from './components/Newcard';
+import Phonecard from './components/PhoneCard';
+import NewCard from './components/Newcard';
 import Topbar from './common/navbar';
 import Stack from 'react-bootstrap/Stack';
 import Container from 'react-bootstrap/esm/Container';
@@ -16,7 +16,7 @@ function App() {
   //form contents
   const [phoneName, setPhoneName] = useState("");
   const [query, setQuery] = useState("");
-  const [id, setId] = useState(0);
+  
   //const [id, setId] = useState(0);
   //get list of phones in an array
   const [phoneList, setPhoneList] = useState([]);
@@ -47,7 +47,7 @@ function App() {
   Axios.get(`http://localhost:4001/phones/delete/${id}`).then((response) => {
     setPhoneList(
       phoneList.filter((val) => {
-        return val.id != id;
+        return val.id !== id;
       })
     );
   });

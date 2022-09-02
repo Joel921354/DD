@@ -23,14 +23,14 @@ function CrudBtn(props) {
 
     const deletePhone = (id) => props.handler(id);
     
-    console.log(props.id);
+    //console.log(props.id);
 
     //TODO show={show} property for the pmodal
   return (
     <ButtonGroup aria-label="Basic example">
 
       <Button variant="inactive" size="sm" onClick={handleShow}>Edit Query </Button>
-        <Pmodal  fields={fields}  setShow={() => setShow(Boolean)} handleClose={() => handleClose(Boolean)} id={props.id} title={props.title} />
+        <Pmodal  show={show}fields={fields}  setShow={() => setShow(Boolean)} handleClose={() => handleClose(Boolean)} id={props.id} title={props.title} />
       {/* //open model with id */} 
       <Button variant="outline-danger" size="sm" onClick={() => deletePhone(props.id)}>Delete item</Button>
       <Button variant="inactive" size="sm">statistics</Button>

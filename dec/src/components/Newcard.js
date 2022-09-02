@@ -1,7 +1,7 @@
 import {Card, Form, Button, Accordion} from 'react-bootstrap/';
 import Query from './query';
 import Paccord from './accordion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { formatQuery} from 'react-querybuilder';
 
 function NewCard(props) {

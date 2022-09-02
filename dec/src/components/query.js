@@ -27,7 +27,7 @@ const queryExport = (q) => {
       return (
         <div>
           <div>
-          <h4>Query</h4>
+          <h4>Platform Definition Query</h4>
             <code>{localQ}</code>
           </div>
          
