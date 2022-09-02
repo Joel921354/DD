@@ -16,6 +16,7 @@ function App() {
   //form contents
   const [phoneName, setPhoneName] = useState("");
   const [query, setQuery] = useState("");
+  const [id, setId] = useState(0);
   //const [id, setId] = useState(0);
   //get list of phones in an array
   const [phoneList, setPhoneList] = useState([]);
@@ -29,21 +30,15 @@ function App() {
   
   // enter and create a new phone
   const addPhone = () => {
+    console.log(query + 'the query...' + phoneName + 'the phonename' )
+    
     Axios.post("http://localhost:4001/phones/create", {
       phoneName: phoneName,
       query: query
-      
-    }).then(() => {
-      setPhoneList([
-        //spread across phonelist
-        ...phoneList,
-        {
-          
-          phoneName: phoneName,
-          query: query,
-        },
-      ]);
-    });
+    }).then(res => {
+      console.log(res)
+      getPhones()
+    }).catch(error => console.error(`There was an error creating${error}`))
   };
 //end
 
@@ -87,7 +82,7 @@ return (
   <div>
   <Badge bg="info">Add new item ➕</Badge> 
   
-    <NewCard addPhone={addPhone} setQuery={setQuery} setPhoneName={setPhoneName} fields={fields} > </NewCard>
+    <NewCard addPhone={addPhone} setQuery={setQuery} setPhoneName={setPhoneName} fields={fields} query={query} > </NewCard>
     
     </div>
        {phoneList.map((val, key) => {

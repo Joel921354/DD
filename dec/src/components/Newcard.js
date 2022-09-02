@@ -2,6 +2,7 @@ import {Card, Form, Button, Accordion} from 'react-bootstrap/';
 import Query from './query';
 import Paccord from './accordion';
 import { useState, useEffect } from 'react';
+import { formatQuery} from 'react-querybuilder';
 
 function NewCard(props) {
 // data to extract from the form
@@ -12,8 +13,13 @@ const phoneNameHandler = (event) => {
   props.setPhoneName(event.target.value);
 };
 //set local query object to contain something
-const queryStringHandler = () => {
-  props.setQuery(query);
+const queryStringHandler = (q) => {
+console.log('global query set')
+  //console.log(props.query);
+  props.setQuery(formatQuery(q, 'sql'));
+
+  console.log(props.query + 'this is app query')
+ 
 };
   // to adjust the form
 //add the query for display and for submission
@@ -48,7 +54,7 @@ const [query, setQuery] = useState({
           <br/>
         </Form.Text>
         <Form.Label>Platform definition</Form.Label>
-          <Query fields={props.fields} query={query} setQuery={setQuery} onChange={queryStringHandler} />
+          <Query fields={props.fields} query={query} setQuery={setQuery} handler={queryStringHandler} />
     
           <Button variant="outline-success" 
          

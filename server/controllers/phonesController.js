@@ -36,15 +36,17 @@ exports.phonesCreate = async (req, res) => {
   // Add new phone to database
   knex('Phones')
     .insert({ // insert new record, a phone
-      'phone': req.body.phone,
+      
+      'phoneName': req.body.phoneName,
       'query': req.body.query
       
     })
     .then(() => {
       // Send a success message in response
-      res.json({ message: `Phone \'${req.body.phone}\' created.` })
+      res.json({ message: `Phone \'${req.body.phoneName}\' created.` })
     })
     .catch(err => {
+
       // Send a error message in response
       res.json({ message: `There was an error creating ${req.body.phone} phone: ${err}` })
     })

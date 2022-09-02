@@ -1,40 +1,46 @@
-import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {bootstrapControlClassnames, bootstrapControlElements,} from '@react-querybuilder/bootstrap';
-import { formatQuery, QueryBuilder , parseSQL} from 'react-querybuilder';
+import { formatQuery, QueryBuilder , } from 'react-querybuilder';
+import { useState } from 'react';
 
 /* TODO fix list so that it's dynmaic */
 
   function Query(props) {
 //TODO error handling
-    const inputQuery = parseSQL(`SELECT * FROM t WHERE APN = 'name here'`);
-    
+
+const [localQ , setLocalQ] = useState("");
+
+const queryExport = (q) => {
+  console.log(q + 'this is q')
+  props.setQuery(q)
+ // console.log(props.setQuery(q) + 'this is setquery')
+
+  setLocalQ( formatQuery(props.query, 'sql'))
+  props.handler(q)
+}
  //run once     
-    useEffect(() => {
-      //passing an array as a second empty argument stops it from running more than once
-        
-        props.setQuery({...props.query, 
-          combinator: inputQuery.combinator, 
-          rules: inputQuery.rules, 
-        },)
-      }, []);
+  
+      //passing an array as a second empty argument stops it from running more than once        
+   
 //run once end
 
       return (
         <div>
           <div>
           <h4>Query</h4>
-            <code>{formatQuery(props.query, 'sql')}</code>
+            <code>{localQ}</code>
           </div>
          
 
           <QueryBuilder
             fields={props.fields}
             query={props.query}
-            onQueryChange={q => props.setQuery(q)}
+            onQueryChange={q => queryExport(q)}
             controlElements={bootstrapControlElements}
             controlClassnames={bootstrapControlClassnames}
             showCombinatorsBetweenRules={true}
+       
+          
           />
         </div>
       );
