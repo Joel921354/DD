@@ -34,7 +34,7 @@ exports.fieldTest = async (req, res) => {
 // Create new phone
 exports.phonesCreate = async (req, res) => {
   // Add new phone to database
-  knex('Phones')
+  knex('phones')
     .insert({ // insert new record, a phone
       
       'phoneName': req.body.phoneName,
@@ -48,7 +48,7 @@ exports.phonesCreate = async (req, res) => {
     .catch(err => {
 
       // Send a error message in response
-      res.json({ message: `There was an error creating ${req.body.phone} phone: ${err}` })
+      res.json({ message: `There was an error creating ${req.body.phoneName} phone: ${err}` })
     })
 }
 
@@ -61,6 +61,9 @@ exports.phonesDelete = async (req, res) => {
     .then(() => {
       // Send a success message in response
       res.json({ message: `phone ${req.params.id} deleted.` })
+
+      //debug
+      console.log({ message: `phone ${req.params.id} deleted.` })
     })
     .catch(err => {
       // Send a error message in response

@@ -2,16 +2,14 @@
 const path = require('path')
 
 // Get the location of database.sqlite file
-const dbPath = path.resolve(__dirname, 'db/database.sqlite')
+const PG_CONNECTION_STRING = "postgres://turtle:password@localhost:5432/turtle-test";
 
 // Create connection to SQLite database
 const knex = require('knex')({
-  client: 'sqlite3',
-  connection: {
-    filename: dbPath,
-  },
+  client: 'pg',
+  connection: PG_CONNECTION_STRING,
   useNullAsDefault: true
-})
+});
 
 knex.schema
   // Make sure no "phones or fields" table exists
@@ -19,15 +17,11 @@ knex.schema
   .hasTable('phones')
     .then((exists) => {
       if (!exists) {
-        // If no "books" table exists
-        // create new, with "id", "author", "title",
-        // "pubDate" and "rating" columns
-        // and use "id" as a primary identification
-        // and increment "id" with every new record (book)
+        //if no table exists create one
         return knex.schema.createTable('phones', (table)  => {
           table.increments('id').primary()
-          table.integer('phoneName')
-          table.string('query')
+          table.text('phoneName')
+          table.text('query')
         })
         .then(() => {
           // Log success message
@@ -52,9 +46,9 @@ knex.select('*').from('phones')
   .then(data => console.log('data:', data))
   .catch(err => console.log(err))
 
-  knex.select('*').from('fieldTest')
+  /* knex.select('*').from('fieldTest')
   .then(data => console.log('data:', data))
-  .catch(err => console.log(err))
+  .catch(err => console.log(err)) */
 
 // Export the database
 module.exports = knex

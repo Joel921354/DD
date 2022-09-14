@@ -14,11 +14,11 @@ const phoneNameHandler = (event) => {
 };
 //set local query object to contain something
 const queryStringHandler = (q) => {
-console.log('global query set')
+//console.log('global query set')
   //console.log(props.query);
   props.setQuery(formatQuery(q, 'sql'));
 
-  console.log(props.query + 'this is app query')
+//  console.log(props.query + 'this is app query')
  
 };
   // to adjust the form
@@ -31,7 +31,7 @@ const [query, setQuery] = useState({
  return (
     <Accordion defaultActiveKey="0">
     <Accordion.Item eventKey="1">
-      <Accordion.Header>Add a new platform definition ➕ </Accordion.Header>
+      <Accordion.Header>Add a new platform definition  </Accordion.Header>
       <Accordion.Body>
         
     <Form>
@@ -40,7 +40,7 @@ const [query, setQuery] = useState({
         <Card.Body>
         
         <Card.Title> 
-            New item ➕
+            New item 
         </Card.Title>
         
         <Card.Text>
@@ -53,7 +53,7 @@ const [query, setQuery] = useState({
           the ID of the platform is generated automatically
           <br/>
         </Form.Text>
-        <Form.Label>Platform definition</Form.Label>
+        <Form.Label></Form.Label>
           <Query fields={props.fields} query={query} setQuery={setQuery} handler={queryStringHandler} />
     
           <Button variant="outline-success" 

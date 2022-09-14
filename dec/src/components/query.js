@@ -11,11 +11,15 @@ import { useState } from 'react';
 const [localQ , setLocalQ] = useState("");
 
 const queryExport = (q) => {
-  console.log(q + 'this is q')
+
   props.setQuery(q)
  // console.log(props.setQuery(q) + 'this is setquery')
-
-  setLocalQ( formatQuery(props.query, 'sql'))
+  try {
+    setLocalQ( formatQuery(props.query, 'sql'))
+  } catch (error) {
+    setLocalQ('')
+  }
+  
   props.handler(q)
 }
  //run once     
@@ -30,8 +34,6 @@ const queryExport = (q) => {
           <h4>Platform Definition Query</h4>
             <code>{localQ}</code>
           </div>
-         
-
           <QueryBuilder
             fields={props.fields}
             query={props.query}

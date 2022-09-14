@@ -57,6 +57,7 @@ function App() {
   const getPhones = () => {
   Axios.get("http://localhost:4001/phones/all").then((response) => { 
     setPhoneList(response.data);
+    console.log(phoneList)
   });
   };
 //get column fields and add it to the local field list for querybuilder
@@ -71,7 +72,7 @@ useEffect(() => {
   } catch (error) {
     console.log(error + "getphones failed" );
   }
-}, []);
+}, );
 //begin rendering   
 return (
    
@@ -80,7 +81,7 @@ return (
 <Topbar/>
   <Stack direction="horizontal" className="d-flex align-items-center justify-content-center  not-found-container" gap={4}>
   <div>
-  <Badge bg="info">Add new item ➕</Badge> 
+  <Badge bg="info">Add new item</Badge> 
   
     <NewCard addPhone={addPhone} setQuery={setQuery} setPhoneName={setPhoneName} fields={fields} query={query} > </NewCard>
     

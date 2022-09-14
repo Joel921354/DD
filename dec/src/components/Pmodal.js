@@ -8,17 +8,6 @@ import ErrorBoundary from '../common/error';
 
 
 function Pmodal({show, setShow, handleClose, id, title, fields, query, xq}) {
-  
-  /* const fields = [
-    { name: 'firstName', label: 'First Name' },
-    { name: 'lastName', label: 'Last Name' },
-    { name: 'age', label: 'Age' },
-    { name: 'address', label: 'Address' },
-    { name: 'phone', label: 'Phone' },
-    { name: 'email', label: 'Email' },
-    { name: 'twitter', label: 'Twitter' },
-    { name: 'isDev', label: 'Is a Developer?', value: false }
-  ]; */
 
   const [xquery, setxQuery] = useState({
     combinator: '',
@@ -40,6 +29,7 @@ function Pmodal({show, setShow, handleClose, id, title, fields, query, xq}) {
         console.log(error)
       }
       
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
    
   return (
